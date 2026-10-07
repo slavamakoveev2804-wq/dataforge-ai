@@ -1,120 +1,23 @@
-
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DataForge AI — PDF to Excel</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PDF to Excel Converter — Free Online | DataForge AI</title>
+<meta name="description" content="Convert PDF tables to clean Excel spreadsheets online with DataForge AI. Upload a PDF and export structured data to XLSX in seconds.">
+<meta name="robots" content="index, follow"><link rel="canonical" href="{{ public_url }}/">
+<meta property="og:type" content="website"><meta property="og:title" content="PDF to Excel Converter — DataForge AI"><meta property="og:description" content="Turn PDF tables into clean Excel spreadsheets without manual copy-paste."><meta property="og:url" content="{{ public_url }}/"><meta name="twitter:card" content="summary">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"DataForge AI","url":"{{ public_url }}/","applicationCategory":"BusinessApplication","operatingSystem":"Web","description":"Online PDF to Excel converter that extracts tables and structured text into Excel workbooks.","offers":[{"@type":"Offer","price":"0","priceCurrency":"USD"},{"@type":"Offer","price":"5","priceCurrency":"USD"}]}</script>
 <style>
-:root{--ink:#101828;--muted:#667085;--line:#e4e7ec;--soft:#f8f9fc;--brand:#625bf6}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:linear-gradient(#fbfbfe,#f6f7fb)}
-nav{height:72px;max-width:1120px;margin:auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-size:21px;font-weight:800;letter-spacing:-.4px}.logo span{color:var(--brand)}
-.navlink{border:1px solid var(--line);background:white;color:var(--ink);border-radius:11px;padding:9px 14px;font-weight:700;text-decoration:none}
-.hero{max-width:910px;text-align:center;margin:65px auto 34px;padding:0 20px}
-.badge{display:inline-block;padding:7px 12px;background:#efeeff;color:#5147d9;border-radius:999px;font-size:13px;font-weight:800}
-h1{font-size:clamp(42px,7vw,68px);line-height:1.0;letter-spacing:-3px;margin:18px 0}
-.lead{font-size:19px;line-height:1.6;color:var(--muted);max-width:720px;margin:0 auto}
-.tool{max-width:760px;margin:38px auto 0;padding:24px;background:white;border:1px solid var(--line);border-radius:22px;box-shadow:0 20px 60px rgba(16,24,40,.08)}
-.drop{border:2px dashed #c7c9d8;border-radius:17px;padding:40px 20px;cursor:pointer;transition:.2s}
-.drop.active,.drop:hover{border-color:var(--brand);background:#fafaff}
-.icon{font-size:34px}.drop h2{margin:10px 0 5px;font-size:22px}.drop p{margin:0;color:var(--muted)}
-input{display:none}.primary{margin-top:18px;border:0;background:var(--ink);color:white;border-radius:11px;padding:12px 18px;font-weight:800;cursor:pointer}
-.fileline{margin-top:15px;font-size:14px;color:#475467}.status{margin-top:14px;font-size:14px;color:var(--muted);min-height:21px}
-.download{display:inline-block;margin-top:10px;color:var(--brand);font-weight:800;text-decoration:none}
-.pricing{max-width:850px;margin:48px auto 70px;padding:0 20px;text-align:center}
-.pricing h2{font-size:28px;margin-bottom:8px}.pricing p{color:var(--muted)}
-.pricegrid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:24px}
-.plan{background:white;border:1px solid var(--line);border-radius:17px;padding:24px;text-align:left}.plan.featured{border:2px solid var(--brand);padding:23px}
-.plan h3{margin:0 0 8px}.amount{font-size:36px;font-weight:850;letter-spacing:-1px}.plan ul{padding-left:19px;color:#475467;line-height:1.7}
-.buy{display:block;text-align:center;margin-top:18px;text-decoration:none;background:var(--brand);color:white;padding:12px;border-radius:10px;font-weight:800}
-.note{text-align:center;color:#98a2b3;font-size:13px;margin-top:12px}
-.features{max-width:980px;margin:0 auto 90px;padding:0 20px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.feature{background:white;border:1px solid var(--line);border-radius:17px;padding:22px}.feature h3{margin:0 0 8px}.feature p{margin:0;color:var(--muted);line-height:1.55}
-footer{text-align:center;color:#98a2b3;border-top:1px solid var(--line);padding:24px}
-@media(max-width:720px){.pricegrid,.features{grid-template-columns:1fr}.hero{margin-top:40px}}
-</style>
-</head>
-<body>
-<nav>
-<div class="logo">Data<span>Forge</span> AI</div>
-<a class="navlink" href="#pricing">Pricing</a>
-</nav>
-
-<section class="hero">
-<div class="badge">PDF → Excel</div>
-<h1>Turn messy PDFs into clean spreadsheets.</h1>
-<p class="lead">Upload a text-based PDF and DataForge AI finds tables, organizes them into Excel sheets, and keeps the manual copy-paste out of your workflow.</p>
-
-<div class="tool" id="tool">
-<div class="drop" id="drop">
-<div class="icon">📄 → 📊</div>
-<h2>Drop your PDF here</h2>
-<p>or click to choose a file · up to {{ max_mb }} MB</p>
-<input id="file" type="file" accept=".pdf,application/pdf">
-<button class="primary" id="choose">Choose PDF</button>
-<div class="fileline" id="fileline"></div>
-</div>
-<div class="status" id="status"></div>
-</div>
-</section>
-
-<section class="pricing" id="pricing">
-<h2>Simple launch pricing</h2>
-<p>Test the workflow free during launch. Charge for the full, polished conversion once payments are connected.</p>
-<div class="pricegrid">
-<div class="plan">
-<h3>Free Preview</h3><div class="amount">$0</div>
-<ul><li>Text-based PDF</li><li>Small files</li><li>Excel download</li></ul>
-</div>
-<div class="plan featured">
-<h3>Full Conversion</h3><div class="amount">$5</div>
-<ul><li>Larger PDF files</li><li>Table extraction</li><li>Excel workbook + summary</li></ul>
-{% if payment_link %}
-<a class="buy" href="{{ payment_link }}" target="_blank" rel="noopener">Unlock for $5</a>
-{% else %}
-<div class="buy">Payment link will be connected next</div>
-{% endif %}
-</div>
-</div>
-<div class="note">Early-stage MVP — payment gating and OCR are next.</div>
-</section>
-
-<section class="features">
-<div class="feature"><h3>⚡ Fast</h3><p>Turn repetitive PDF work into an Excel-ready result in a few clicks.</p></div>
-<div class="feature"><h3>📊 Table-aware</h3><p>Detects PDF tables and creates separate Excel worksheets for them.</p></div>
-<div class="feature"><h3>🔒 Private by design</h3><p>Uploaded files are processed for the conversion request and are not stored by the app.</p></div>
-</section>
-
-<footer>© 2026 DataForge AI · <a href="/privacy" style="color:#98a2b3">Privacy</a> · <a href="/terms" style="color:#98a2b3">Terms</a></footer>
-
+:root{--ink:#101828;--muted:#667085;--line:#e4e7ec;--brand:#625bf6}*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,sans-serif;color:var(--ink);background:linear-gradient(#fcfcff,#f6f7fb)}main{max-width:1040px;margin:auto;padding:30px 20px 80px}header{display:flex;justify-content:space-between;align-items:center}.logo{font-size:22px;font-weight:800}.logo span{color:var(--brand)}.nav{display:flex;gap:10px}.nav a{color:var(--ink);border:1px solid var(--line);background:#fff;padding:9px 14px;border-radius:10px;text-decoration:none;font-weight:700}.hero{text-align:center;margin:72px auto 35px;max-width:900px}.badge{display:inline-block;background:#efeeff;color:#5147d9;border-radius:999px;padding:7px 12px;font-size:13px;font-weight:800}h1{font-size:clamp(42px,7vw,70px);letter-spacing:-3px;line-height:1;margin:17px 0}.lead{font-size:19px;line-height:1.6;color:var(--muted);max-width:720px;margin:auto}.card{max-width:780px;margin:38px auto;background:white;border:1px solid var(--line);border-radius:21px;padding:25px;box-shadow:0 20px 60px rgba(16,24,40,.08)}.drop{border:2px dashed #c7c9d8;border-radius:17px;text-align:center;padding:43px 20px;cursor:pointer}.drop:hover,.drop.active{border-color:var(--brand);background:#fafaff}.icon{font-size:36px}.drop h2{margin:10px 0 5px}.drop p{margin:0;color:var(--muted)}input{display:none}.choose{margin-top:18px;border:0;background:var(--ink);color:white;padding:12px 18px;border-radius:10px;font-weight:800;cursor:pointer}.status{margin-top:14px;color:var(--muted);min-height:22px}.download{color:var(--brand);font-weight:800;text-decoration:none}.section{text-align:center;margin-top:70px}.section h2{font-size:31px;margin-bottom:8px}.section>p{color:var(--muted)}.plans{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:25px}.plan{background:#fff;border:2px solid var(--line);border-radius:17px;padding:25px;text-align:left;cursor:pointer;transition:.18s}.plan:hover{border-color:#a9a4fb;transform:translateY(-2px)}.plan.selected{border-color:var(--brand);box-shadow:0 0 0 3px #625bf61a}.tag{display:inline-block;font-size:12px;font-weight:800;color:#5147d9;background:#efeeff;padding:5px 8px;border-radius:999px}.plan h3{margin:10px 0 5px}.price{font-size:38px;font-weight:850}.muted{color:var(--muted);line-height:1.5}.select{width:100%;border:0;background:var(--brand);color:white;padding:12px;border-radius:10px;font-weight:800;cursor:pointer;margin-top:12px}.select.secondary{background:#111827}.notice{margin-top:12px;text-align:center;color:#667085;font-size:13px;min-height:20px}.prose{max-width:820px;margin:30px auto 0;color:#475467;line-height:1.7;text-align:left}.faq{max-width:820px;margin:30px auto;text-align:left}.faq details{background:#fff;border:1px solid var(--line);border-radius:12px;padding:15px;margin:10px 0}.faq summary{font-weight:750;cursor:pointer}footer{text-align:center;color:#98a2b3;margin-top:70px;padding-top:22px;border-top:1px solid var(--line)}footer a{color:#98a2b3}@media(max-width:700px){.plans{grid-template-columns:1fr}}
+</style></head><body><main>
+<header><div class="logo">Data<span>Forge</span> AI</div><nav class="nav"><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></nav></header>
+<section class="hero"><div class="badge">PDF → Excel</div><h1>Convert PDF to Excel in seconds.</h1><p class="lead">Upload a text-based PDF, extract its tables, and download a clean Excel workbook. No manual copy-paste.</p></section>
+<section class="card" id="converter"><div class="drop" id="drop"><div class="icon">📄 → 📊</div><h2>Upload your PDF</h2><p>Click to choose a file or drag it here · up to {{max_mb}} MB</p><input id="file" type="file" accept=".pdf,application/pdf"><button class="choose" id="choose">Choose PDF</button><div id="status" class="status"></div></div></section>
+<section id="pricing" class="section"><h2>Choose a plan</h2><p>Pricing is selectable now. Paid checkout becomes active when Stripe is connected.</p><div class="plans">
+<article class="plan selected" data-plan="free"><span class="tag">START</span><h3>Free Preview</h3><div class="price">$0</div><p class="muted">Test a small text-based PDF and download the Excel workbook.</p><ul class="muted"><li>PDF upload</li><li>Table extraction</li><li>Excel download</li></ul><button class="select secondary" type="button">Select Free</button></article>
+<article class="plan" data-plan="pro"><span class="tag">PRO</span><h3>Full Conversion</h3><div class="price">$5</div><p class="muted">For larger documents and full table extraction.</p><ul class="muted"><li>Larger files</li><li>Multiple tables</li><li>Excel workbook + summary</li></ul>{% if payment_link %}<a class="select" href="{{payment_link}}" target="_blank" rel="noopener" style="display:block;text-align:center;text-decoration:none">Continue to payment</a>{% else %}<button class="select" id="proButton" type="button">Select Pro</button>{% endif %}</article></div><div class="notice" id="planNotice"></div></section>
+<section class="prose"><h2 style="text-align:center;color:#101828">Online PDF to Excel converter</h2><p>DataForge AI is built for invoices, product lists, reports, catalogs, and other PDF documents that need to become spreadsheet data. Upload a text-based PDF and export the detected tables to Excel without manual copy-paste.</p><p>The current version works best with machine-readable PDFs. Scanned documents need OCR and are not yet supported. Always review the converted file before financial, legal, or operational use.</p></section>
+<section id="faq" class="section"><h2>Frequently asked questions</h2><div class="faq"><details><summary>Can DataForge AI convert PDF to Excel?</summary><p>Yes. It extracts tables from text-based PDF files and creates an Excel workbook.</p></details><details><summary>Do I need to install software?</summary><p>No. You can use the web app in a modern browser.</p></details><details><summary>Does it support scanned PDFs?</summary><p>OCR for scanned documents is planned for a future release.</p></details></div></section>
+<footer>© 2026 DataForge AI · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></footer>
+</main>
 <script>
-const fileInput=document.getElementById('file'), drop=document.getElementById('drop'), choose=document.getElementById('choose'), status=document.getElementById('status'), fileline=document.getElementById('fileline');
-choose.addEventListener('click',e=>{e.stopPropagation();fileInput.click()});
-drop.addEventListener('click',()=>fileInput.click());
-fileInput.addEventListener('change',()=>{if(fileInput.files[0]) upload(fileInput.files[0])});
-['dragenter','dragover'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.add('active')}));
-['dragleave','drop'].forEach(ev=>drop.addEventListener(ev,e=>{e.preventDefault();drop.classList.remove('active')}));
-drop.addEventListener('drop',e=>{const f=e.dataTransfer.files[0];if(f)upload(f)});
-async function upload(file){
- if(file.type!=='application/pdf'){status.textContent='Please choose a PDF file.';return}
- fileline.textContent='Selected: '+file.name;
- status.textContent='Converting…';
- const fd=new FormData(); fd.append('file',file);
- try{
-  const r=await fetch('/api/convert',{method:'POST',body:fd});
-  if(!r.ok){
-    let msg='Conversion failed.';
-    try{msg=(await r.json()).error||msg}catch(_){}
-    throw new Error(msg);
-  }
-  const blob=await r.blob();
-  const url=URL.createObjectURL(blob), a=document.createElement('a');
-  a.href=url; a.download=file.name.replace(/\.pdf$/i,'')+'_dataforge.xlsx';
-  a.className='download'; a.textContent='Download Excel';
-  status.innerHTML='Done — your Excel file is ready.'; status.appendChild(document.createElement('br')); status.appendChild(a);
- }catch(err){status.textContent=err.message||'Something went wrong. Please try another PDF.'}
-}
-</script>
-</body>
-</html>
+const f=document.getElementById('file'),d=document.getElementById('drop'),b=document.getElementById('choose'),s=document.getElementById('status');b.onclick=e=>{e.stopPropagation();f.click()};d.onclick=()=>f.click();f.onchange=()=>f.files[0]&&upload(f.files[0]);['dragover','dragenter'].forEach(x=>d.addEventListener(x,e=>{e.preventDefault();d.classList.add('active')}));['dragleave','drop'].forEach(x=>d.addEventListener(x,e=>{e.preventDefault();d.classList.remove('active')}));d.ondrop=e=>{e.stopPropagation();const x=e.dataTransfer.files[0];if(x)upload(x)};async function upload(file){if(file.type!=='application/pdf'){s.textContent='Please choose a PDF file.';return}s.textContent='Converting…';const fd=new FormData();fd.append('file',file);try{const r=await fetch('/api/convert',{method:'POST',body:fd});if(!r.ok){let j={};try{j=await r.json()}catch(_){}throw Error(j.error||'Conversion failed.')}const u=URL.createObjectURL(await r.blob()),a=document.createElement('a');a.href=u;a.download=file.name.replace(/\.pdf$/i,'')+'_dataforge.xlsx';a.className='download';a.textContent='Download Excel';s.innerHTML='Done — ';s.appendChild(a)}catch(e){s.textContent=e.message}}
+const plans=[...document.querySelectorAll('.plan')],n=document.getElementById('planNotice');plans.forEach(p=>p.addEventListener('click',()=>{plans.forEach(x=>x.classList.remove('selected'));p.classList.add('selected');n.textContent=p.dataset.plan==='free'?'Free selected. Upload a PDF above to test it.':'Pro selected. Connect Stripe to enable paid checkout.'}));document.getElementById('proButton')?.addEventListener('click',e=>{e.stopPropagation();n.textContent='Pro selected. Stripe checkout is not connected yet.'});
+</script></body></html>
