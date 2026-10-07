@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: dataforge-ai
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn -b 0.0.0.0:$PORT app:app --workers 2 --timeout 120
+    envVars:
+      - key: MAX_FILE_MB
+        value: "10"
+      - key: STRIPE_PAYMENT_LINK
+        sync: false
